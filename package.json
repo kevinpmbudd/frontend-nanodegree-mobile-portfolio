@@ -1,0 +1,25 @@
+{
+  "name": "frontend-nanodegree-mobile-portfolio",
+  "version": "1.0.0",
+  "description": "Website Optimization Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinpmbudd/frontend-nanodegree-mobile-portfolio.git"
+  },
+  "author": "Kevin Budd <kevin@kevinbudd.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevinpmbudd/frontend-nanodegree-mobile-portfolio/issues"
+  },
+  "homepage": "https://github.com/kevinpmbudd/frontend-nanodegree-mobile-portfolio#readme",
+  "devDependencies": {
+    "gulp-exit": "0.0.2",
+    "ngrok": "^0.2.2",
+    "psi": "^1.0.6",
+    "run-sequence": "^1.1.4"
+  }
+}
