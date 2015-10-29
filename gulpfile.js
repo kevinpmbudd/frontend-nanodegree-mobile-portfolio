@@ -6,12 +6,34 @@ var gulp = require('gulp'),
 		critical = require('critical'),
 		sequence = require('run-sequence'),
     concat = require('gulp-concat'),
-		browserSync = require('browser-sync').create();
+    jshint = require('gulp-jshint'),
+    uglify = require('gulp-uglify'),
+		browserSync = require('browser-sync').create(),
 		reload = browserSync.reload,
+    imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
     htmlreplace = require('gulp-html-replace');
 
 var site = '';
 
+gulp.task('js', function () {
+   return gulp.src(['src/js/*.js', 'src/views/js/*.js'])
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'))
+      .pipe(uglify())
+      .pipe(concat('app.js'))
+      .pipe(gulp.dest('dist/js/'));
+});
+
+gulp.task('image', function () {
+    return gulp.src(['src/img/*', 'src/views/images/*'])
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('dist/img'));
+});
 
 gulp.task('html-replace', function() {
   gulp.src('src/index.html')
@@ -37,9 +59,9 @@ gulp.task('serve', function () {
 });
 
 gulp.task('css', function () {
-    return gulp.src('src/css/*.css')
+    return gulp.src(['src/css/*.css', 'src/views/css/*.css'])
         .pipe(uncss({
-            html: ['src/index.html', 'src/views/*.html']
+            html: ['src/index.html', 'src/views/pizza.html']
         }))
         .pipe(nano())
         .pipe(concat('styles.min.css'))
