@@ -43,7 +43,6 @@ gulp.task('html-replace', function() {
     .pipe(gulp.dest('dist/'));
 });
 
-// Watch scss AND html files, doing different things with each.
 gulp.task('serve', function () {
 
     // Serve files from the root of this project
@@ -53,9 +52,9 @@ gulp.task('serve', function () {
         }
     });
 
-    gulp.watch("*.html").on("change", browserSync.reload);
-    gulp.watch("*.js").on("change", browserSync.reload);
-    gulp.watch("*.css").on("change", browserSync.reload);
+    gulp.watch("src/*.html").on("change", browserSync.reload);
+    gulp.watch("src/*.js").on("change", browserSync.reload);
+    gulp.watch("src/*.css").on("change", browserSync.reload);
 });
 
 gulp.task('css', function () {
