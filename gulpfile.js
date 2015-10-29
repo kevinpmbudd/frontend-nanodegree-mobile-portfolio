@@ -39,7 +39,7 @@ gulp.task('usemin', function() {
 
 
 gulp.task('image', function () {
-    return gulp.src(['src/img/*', 'src/views/images/*'])
+    return gulp.src('src/img/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
