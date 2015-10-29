@@ -5,10 +5,21 @@ var gulp = require('gulp'),
 		ngrok = require('ngrok'),
 		critical = require('critical'),
 		sequence = require('run-sequence'),
+    concat = require('gulp-concat'),
 		browserSync = require('browser-sync').create();
-		reload = browserSync.reload;
+		reload = browserSync.reload,
+    htmlreplace = require('gulp-html-replace');
 
 var site = '';
+
+
+gulp.task('html-replace', function() {
+  gulp.src('src/index.html')
+    .pipe(htmlreplace({
+        'css': 'styles.min.css'
+    }))
+    .pipe(gulp.dest('dist/'));
+});
 
 // Watch scss AND html files, doing different things with each.
 gulp.task('serve', function () {
@@ -26,12 +37,13 @@ gulp.task('serve', function () {
 });
 
 gulp.task('css', function () {
-    return gulp.src('css/*.css')
+    return gulp.src('src/css/*.css')
         .pipe(uncss({
-            html: ['index.html', 'views/*.html']
+            html: ['src/index.html', 'src/views/*.html']
         }))
         .pipe(nano())
-        .pipe(gulp.dest('./uncss'));
+        .pipe(concat('styles.min.css'))
+        .pipe(gulp.dest('dist/css/'));
 });
 
 gulp.task('critical', function (cb) {
