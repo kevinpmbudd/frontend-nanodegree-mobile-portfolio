@@ -3,7 +3,7 @@ var gulp = require('gulp'),
 		nano = require('gulp-cssnano'),
 		psi = require('psi'),
 		ngrok = require('ngrok'),
-		critical = require('critical'),
+		// critical = require('critical'),
 		sequence = require('run-sequence'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
@@ -67,27 +67,27 @@ gulp.task('css', function () {
         .pipe(gulp.dest('dist/css/'));
 });
 
-gulp.task('critical', function (cb) {
-  critical.generate({
-    base: './',
-    src: 'index.html',
-    css: ['uncss/print.css', 'uncss/style.css'],
-    dimensions: [{
-      width: 320,
-      height: 480
-    },{
-      width: 768,
-      height: 1024
-    },{
-      width: 1280,
-      height: 960
-    }],
-    dest: 'css/critical.css',
-    minify: true,
-    extract: false,
-    ignore: ['font-face']
-  });
-});
+// gulp.task('critical', function (cb) {
+//   critical.generate({
+//     base: './',
+//     src: 'index.html',
+//     css: ['uncss/print.css', 'uncss/style.css'],
+//     dimensions: [{
+//       width: 320,
+//       height: 480
+//     },{
+//       width: 768,
+//       height: 1024
+//     },{
+//       width: 1280,
+//       height: 960
+//     }],
+//     dest: 'css/critical.css',
+//     minify: true,
+//     extract: false,
+//     ignore: ['font-face']
+//   });
+// });
 
 gulp.task('ngrok-url', function(cb) {
   return ngrok.connect(8080, function (err, url) {
