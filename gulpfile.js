@@ -12,6 +12,10 @@ var gulp = require('gulp'),
 		reload = browserSync.reload,
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
+    usemin = require('gulp-usemin'),
+    minifyHtml = require('gulp-minify-html'),
+    minifyCss = require('gulp-minify-css'),
+    rev = require('gulp-rev'),
     htmlreplace = require('gulp-html-replace');
 
 var site = '';
@@ -24,6 +28,15 @@ gulp.task('js', function () {
       .pipe(concat('app.js'))
       .pipe(gulp.dest('dist/js/'));
 });
+
+gulp.task('usemin', function() {
+  return gulp.src('index.html')
+    .pipe(usemin({
+      js: [ uglify() ]
+    }))
+    .pipe(gulp.dest('dist'));
+});
+
 
 gulp.task('image', function () {
     return gulp.src(['src/img/*', 'src/views/images/*'])
