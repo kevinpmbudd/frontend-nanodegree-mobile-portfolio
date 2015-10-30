@@ -1,5 +1,17 @@
 ## Website Performance Optimization portfolio project
 
+How to Run
+If you are in possesion of the code for this project you may launch the main page by opening either
+src/index.html or dist/index.html in your browser.
+
+the src folder contains the un-minified files and is human readable while the /dist folder contains
+files that have been minified among other optimizations, Gulp was used to streamline the process of
+minifiying and optimizing the source code.
+
+If you wish to Use Gulp to re-build the src files navigate to the root folder and from the command
+line you can give the single command 'gulp' (no paren required), this will run a default gulp process
+which you can see defined in gulpfile.js located in the root folder.
+
 Optimizations Made
 
 Index.html to Optimize PageSpeed Insights Score
