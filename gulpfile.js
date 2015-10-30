@@ -57,3 +57,5 @@ gulp.task('serve', function () {
     gulp.watch("src/*.js").on("change", browserSync.reload);
     gulp.watch("src/*.css").on("change", browserSync.reload);
 });
+
+gulp.task('default', ['usemin-index', 'usemin-pizza', 'image']);

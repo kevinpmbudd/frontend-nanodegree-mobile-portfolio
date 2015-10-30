@@ -402,7 +402,7 @@ var pizzaElementGenerator = function(i) {
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-  // Iterates through pizza elements on the page and changes their widths
+  // Changes the size of the pizzas and the label for the slider displaying the current size
   function changePizzaSizes(size) {
     var width = 0;
     switch(size) {
@@ -424,6 +424,9 @@ var resizePizzas = function(size) {
 
     var pizzas = document.getElementsByClassName('randomPizzaContainer');
 
+    // document.getElementsByClass here returns an HTML Collection,
+    // in order to use a forEach, pizzas is converted into an array by
+    // using the .call method on the HTML collection
     [].forEach.call(pizzas, function(pizza) {
         pizza.style.width = width + "%";
     });
@@ -474,10 +477,14 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  // store all the pizzas as a HTML Collection
   var items = document.getElementsByClassName('mover');
+  // calculate the length outside for loop to ease overhead
   var length = items.length;
+  // calculate .scrollTop outside for loop to ease overhead
   var top = document.body.scrollTop;
 
+  // update the position of each pizza in the background
   for (var i = 0; i < length; i++) {
     var phase = Math.sin((top / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
@@ -493,7 +500,7 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll
+// runs updatePositions on scroll, now using requestAnimationFrame to better optimize the call
 window.addEventListener('scroll', function() {
   window.requestAnimationFrame(updatePositions);
 });
