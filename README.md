@@ -3,8 +3,20 @@
 Optimizations Made
 
 Index.html to Optimize PageSpeed Insights Score
-1. Inlined CSS, specifically
+1. Inlined CSS, specifically style.css into index.html
+2. Utilized Gulp to Minify and And Concatenate js and css
+3. Resized images and utilized Gulp to optimize all project images
+4. Added async tag to js tags
+5. Added media="print" to style tag for printing
 
+Pizza.html to get 60FPS and under 5ms reload pizzas
+1. Reworked updatePositions by calculating variables outside of for loop
+2. Switched from .querySelectorAll to .getElementsByClassName
+3. Consolidated changeSliderLabel with ChangePizzaSizes to avoid repeating
+	 similar switch statements.
+4. Removed determineDx function and performed resizing in changePizzaSizes
+	 using .getElementsByClassName here as well for performance.
+5. Used RequestAnimationFrame on event listener for scrolling
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
