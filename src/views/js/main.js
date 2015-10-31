@@ -482,12 +482,17 @@ function updatePositions() {
   // calculate the length outside for loop to ease overhead
   var length = items.length;
   // calculate .scrollTop outside for loop to ease overhead
-  var top = document.body.scrollTop;
+  var top = (document.body.scrollTop / 1250);
 
+  var phase = [];
+
+  for (var i = 0; i < length; i++) {
+    phase[i] = Math.sin(top + (i % 5));
+  }
   // update the position of each pizza in the background
   for (var i = 0; i < length; i++) {
-    var phase = Math.sin((top / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    // var phase = Math.sin(top + (i % 5));
+    items[i].style.left = items[i].basicLeft + 100 * phase[i] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -507,10 +512,16 @@ window.addEventListener('scroll', function() {
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
+  var cols = Math.floor(window.innerWidth / 146.66);
+  console.log(window.innerWidth);
+  var rows = Math.floor(window.innerHeight / 200);
+  console.log(window.innerHeight);
+  var pizzas = cols * rows;
+  console.log("pizzas");
+  console.log(pizzas);
   var s = 256;
   var elem;
-  for (var i = 0; i < 32; i++) {
+  for (var i = 0; i <= pizzas; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "../img/pizza.png";
