@@ -510,18 +510,23 @@ window.addEventListener('scroll', function() {
   window.requestAnimationFrame(updatePositions);
 });
 
-// Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
+function calculatePizzas() {
+  var pizzas = 0;
   var cols = Math.floor(window.innerWidth / 146.66);
   console.log(window.innerWidth);
   var rows = Math.floor(window.innerHeight / 200);
   console.log(window.innerHeight);
-  var pizzas = cols * rows;
+  pizzas = cols * rows;
   console.log("pizzas");
   console.log(pizzas);
   var s = 256;
   var elem;
+  var doc = document.getElementById("movingPizzas1");
+  while (doc.firstChild) {
+    doc.removeChild(doc.firstChild);
+  }
   for (var i = 0; i <= pizzas; i++) {
+
     elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "../img/pizza.png";
@@ -531,5 +536,35 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
+
+  updatePositions();
+}
+
+window.addEventListener('resize', function() {
+  window.requestAnimationFrame(calculatePizzas);
+});
+
+// Generates the sliding pizzas when the page loads.
+document.addEventListener('DOMContentLoaded', function() {
+  // var cols = Math.floor(window.innerWidth / 146.66);
+  // console.log(window.innerWidth);
+  // var rows = Math.floor(window.innerHeight / 200);
+  // console.log(window.innerHeight);
+  // var pizzas = cols * rows;
+  // console.log("pizzas");
+  // console.log(pizzas);
+  // var s = 256;
+  // var elem;
+  // for (var i = 0; i <= pizzas; i++) {
+  //   elem = document.createElement('img');
+  //   elem.className = 'mover';
+  //   elem.src = "../img/pizza.png";
+  //   elem.style.height = "100px";
+  //   elem.style.width = "73.333px";
+  //   elem.basicLeft = (i % cols) * s;
+  //   elem.style.top = (Math.floor(i / cols) * s) + 'px';
+  //   document.querySelector("#movingPizzas1").appendChild(elem);
+  // }
+  calculatePizzas();
   updatePositions();
 });
